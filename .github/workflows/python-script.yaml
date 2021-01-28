@@ -12,5 +12,6 @@ jobs:
       - uses: jannekem/run-python-script-action@check_return_code
         with:
           script: |
-            import sys
-            sys.exit(2)
+            print("Doing something that will fail")
+            a = []
+            a[10]

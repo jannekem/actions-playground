@@ -17,7 +17,9 @@ jobs:
             print("Doing something that will fail")
             a = []
             a[10]
-      - run: |
+      - name: Print errors
+        if: steps.script.outputs.error == "true"
+        run: |
           printenv "SCRIPT_STDOUT"
           printenv "SCRIPT_STDERR"
         env:

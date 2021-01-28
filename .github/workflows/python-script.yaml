@@ -12,6 +12,5 @@ jobs:
       - uses: jannekem/run-python-script-action@check_return_code
         with:
           script: |
-            import os
-            a = []
-            a[10]
+            import sys
+            sys.exit(1)

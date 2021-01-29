@@ -18,7 +18,7 @@ jobs:
             print("Directory contents:")
             for f in os.listdir():
                 print(f)
-            add_path("/opt/bin/test")
+            add_path("/usr/local/test")
             group("fail on error input")
             print(get_input("fail-on-error"))
             debug("Debug message")
@@ -36,4 +36,4 @@ jobs:
           SCRIPT_STDOUT: ${{ steps.script.outputs.stdout }}
           SCRIPT_STDERR: ${{ steps.script.outputs.stderr }}
       - name: Check path
-        run: echo $GITHUB_PATH
+        run: cat $GITHUB_PATH

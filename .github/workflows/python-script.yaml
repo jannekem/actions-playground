@@ -37,6 +37,6 @@ jobs:
           SCRIPT_STDOUT: ${{ steps.script.outputs.stdout }}
           SCRIPT_STDERR: ${{ steps.script.outputs.stderr }}
       - name: Check path
-        run: cat $GITHUB_PATH
+        run: echo $PATH
       - name: Check env
         run: echo $HELLO

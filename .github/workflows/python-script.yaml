@@ -9,14 +9,24 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
-      - uses: jannekem/run-python-script-action@check_return_code
+      - uses: jannekem/run-python-script-action@utilities
         id: script
         with:
           fail-on-error: false
           script: |
-            print("Doing something that will fail")
-            a = []
-            a[10]
+            import os
+            print("Directory contents:")
+            for f in os.listdir():
+                print(f)
+            add_path("/opt/bin/test")
+            group("fail on error input")
+            print(get_input("fail-on-error"))
+            debug("Debug message")
+            warning("Warning message")
+            end_group()
+            add_mask("supersecret")
+            print("supersecret")
+            error("Error message")
       - name: Print errors
         if: steps.script.outputs.error == 'true'
         run: |
@@ -24,4 +34,6 @@ jobs:
           printenv "SCRIPT_STDERR"
         env:
           SCRIPT_STDOUT: ${{ steps.script.outputs.stdout }}
-          SCRIPT_STDERR: ${{ steps.script.outputs.stderr }} 
+          SCRIPT_STDERR: ${{ steps.script.outputs.stderr }}
+      - name: Check path
+        run: echo $GITHUB_PATH

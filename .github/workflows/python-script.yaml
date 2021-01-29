@@ -27,6 +27,7 @@ jobs:
             add_mask("supersecret")
             print("supersecret")
             error("Error message")
+            set_env("HELLO", "WORLD")
       - name: Print errors
         if: steps.script.outputs.error == 'true'
         run: |
@@ -37,3 +38,5 @@ jobs:
           SCRIPT_STDERR: ${{ steps.script.outputs.stderr }}
       - name: Check path
         run: cat $GITHUB_PATH
+      - name: Check env
+        run: echo $HELLO

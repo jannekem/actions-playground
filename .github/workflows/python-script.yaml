@@ -28,6 +28,7 @@ jobs:
             print("supersecret")
             error("Error message")
             set_env("HELLO", "WORLD")
+            print(get_input("script"))
       - name: Print errors
         if: steps.script.outputs.error == 'true'
         run: |

@@ -7,6 +7,7 @@ jobs:
   inputs-outputs:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Get author name
         id: author
         run: echo "::set-output name=author::$(git show -s --format=%an)"

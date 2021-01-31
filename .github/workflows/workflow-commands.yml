@@ -1,14 +1,19 @@
-name: Test workflow commands
+name: Workflow commands
 
 on:
   push:
 
 jobs:
-  workflow-commands:
+  inputs-outputs:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Get input
-        run: echo ${INPUT_TEST-INPUT}
-        with:
-          test-input: Hello
+      - name: Get author name
+        id: author
+        run: echo "::set-output name=author::$(git show -s --format=%an)"
+      - name: Print author name
+        run: echo "${{ steps.author.outputs.author }}"
+      - name: Print author name with an environment variable
+        run: echo $AUTHOR_NAME
+        env:
+          AUTHOR_NAME: ${{ steps.author.outputs.author }}
+        

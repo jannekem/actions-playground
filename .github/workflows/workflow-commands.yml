@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  inputs-outputs:
+  workflow-commands:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -17,4 +17,9 @@ jobs:
         run: echo $AUTHOR_NAME
         env:
           AUTHOR_NAME: ${{ steps.author.outputs.author }}
-        
+      - name: Log levels
+        run: |
+          echo "::debug::This is a debug message"
+          echo "This is an info message"
+          echo "::warning::This is a warning"
+          echo "::error::This is an error"

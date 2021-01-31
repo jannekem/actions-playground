@@ -1,0 +1,14 @@
+name: Test workflow commands
+
+on:
+  push:
+
+jobs:
+  workflow-commands:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Get input
+        run: echo ${INPUT_TEST-INPUT}
+        with:
+          test-input: Hello

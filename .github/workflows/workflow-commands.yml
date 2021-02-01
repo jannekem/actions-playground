@@ -30,3 +30,11 @@ jobs:
           echo "::warning::Warning message"
           echo "::endgroup::"
           echo "Outside the group"
+      - name: Mask sensitive data
+        run: |
+          echo "::add-mask::password123"
+          echo "My password is password123"
+          echo "::add-mask::$SUPER_SECRET"
+          echo "Here's a secret for you: $SUPER_SECRET"
+        env:
+          SUPER_SECRET: The cake is a lie.

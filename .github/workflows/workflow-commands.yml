@@ -23,3 +23,10 @@ jobs:
           echo "This is an info message"
           echo "::warning::This is a warning"
           echo "::error::This is an error"
+      - name: Log grouping
+        run: |
+          echo "::group::Group name"
+          echo "Log entry"
+          echo "::warning::Warning message"
+          echo "::endgroup::"
+          echo "Outside the group"

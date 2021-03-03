@@ -18,7 +18,7 @@ jobs:
 
       - name: Create VM
         run: |
-          gcloud compute instances describe my-instance || \
+          gcloud compute instances describe my-instance --zone=us-central1-a || \
           gcloud compute instances create my-instance \
               --zone=us-central1-a \
               --machine-type=e2-medium \

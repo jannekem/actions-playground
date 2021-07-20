@@ -40,7 +40,7 @@ jobs:
     - name: Fail randomly
       run: |
         cat README.md
-        return $((RANDOM % 2))
+        exit $((RANDOM % 2))
     - name: Message success
       if: ${{ success() }}
       uses: actions/github-script@v4

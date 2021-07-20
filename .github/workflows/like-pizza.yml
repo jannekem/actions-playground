@@ -1,0 +1,23 @@
+name: Like pizza
+
+on:
+  issue_comment:
+    types:
+      - created
+
+jobs:
+  like-pizza:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.comment.body == 'I like pizza'}}
+    steps:
+      - name: Like pizza
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const {owner, repo} = context.issue
+            github.reactions.createForIssueComment({
+              owner,
+              repo,
+              comment_id: context.payload.comment.id,
+              content: "+1",
+            });

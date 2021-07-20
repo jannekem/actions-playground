@@ -29,13 +29,39 @@ jobs:
     - name: React to comment
       uses: actions/github-script@v4
       with:
-          script: |
-            const {owner, repo} = context.issue
-            github.reactions.createForIssueComment({
-              owner,
-              repo,
-              comment_id: context.payload.comment.id,
-              content: "rocket",
-            });
-    - name: Run dummy deployment
-      run: cat README.md
+        script: |
+          const {owner, repo} = context.issue;
+          github.reactions.createForIssueComment({
+            owner,
+            repo,
+            comment_id: context.payload.comment.id,
+            content: "rocket",
+          });
+    - name: Fail randomly
+      run: |
+        cat README.md
+        return $RANDOM%2
+    - name: Message success
+      if: ${{ success() }}
+      uses: actions/github-script@v4
+      with:
+        script: |
+          github.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: 'Deployment succeeded! ✅',
+          });
+    - name: Message failure
+      if: ${{ failure() }}
+      uses: actions/github-script@v4
+      with:
+        script: |
+          github.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: 'Deployment failed! ❌',
+          });
+
+    

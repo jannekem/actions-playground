@@ -6,15 +6,16 @@ on:
       - created
 
 jobs:
-  runs-on: ubuntu-latest
-  if: ${{ github.event.issue.pull_request && github.event.comment.body == '/deploy' }}
-  steps:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.issue.pull_request && github.event.comment.body == '/deploy' }}
+    steps:
     - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.issue.pull_request.head.sha }}
+      with:
+        ref: ${{ github.event.issue.pull_request.head.sha }}
     - name: React to comment
       uses: actions/github-script@v4
-        with:
+      with:
           script: |
             const {owner, repo} = context.issue
             github.reactions.createForIssueComment({

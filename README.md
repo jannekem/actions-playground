@@ -8,12 +8,11 @@ If you have a cool workflow in mind then feel free to open a pull request and I 
 
 ## Current workflows
 
-Here are the workwlows that are currently configured.
+Here are the workflows that are currently configured.
 
 ### PR Labeler
 
 The pull request labeler workflow in [.github/workflows/pr-labels.yml](.github/workflows/pr-labels.yml) assigns labels to pull requests based on the edited file types and directories.
-
 
 ### First interaction
 
@@ -38,6 +37,10 @@ The repository contains a super simple Python unit test that always passes. The 
 ### I like pizza
 
 When someone comments a pull request or an issue with "I like pizza", the workflow in [.github/workflows/like-pizza.yml](.github/workflows/like-pizza.yml) will react to the comment with a thumbs up emoji. This demonstrates how you can use the `issue_comment` event.
+
+### Deploy on issue comment
+
+The [deployment workflow](.github/workflows/deploy.yml) takes issue comments one step further. In addition to reacting with the rocket emoji to a "/deploy" comment in a PR, it will checkout the correct branch, run a fake deployment command that might fail, and then respond back to the PR with a message that tells the deployment status.
 
 ## Contributing
 

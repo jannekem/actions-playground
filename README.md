@@ -35,6 +35,10 @@ Flake8 is a Python linter. The [.github/workflows/flake8.yml](.github/workflows/
 
 The repository contains a super simple Python unit test that always passes. The [.github/workflows/unittest.yml](.github/workflows/unittest.yml) is the workwflow that runs that check against all push events.
 
+### I like pizza
+
+When someone comments a pull request or an issue with "I like pizza", the workflow in [.github/workflows/like-pizza.yml](.github/workflows/like-pizza.yml) will react to the comment with a thumbs up emoji. This demonstrates how you can use the `issue_comment` event.
+
 ## Contributing
 
 1. Have an idea for a cool workflow
